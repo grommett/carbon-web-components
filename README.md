@@ -12,13 +12,8 @@ A Carbon Design System variant that's as easy to use as native HTML elements, wi
 > contributors.
 
 <p align="center">
-  <a href="https://github.com/carbon-design-system/carbon-web-components/blob/master/LICENSE">
+  <a href="https://github.com/carbon-design-system/carbon-web-components/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Carbon is released under the Apache-2.0 license" />
-  </a>
-</p>
-<p align="center">
-  <a href="https://www.netlify.com" target="_blank">
-    <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
   </a>
 </p>
 <p align="center">
@@ -37,11 +32,17 @@ The effort stems from https://github.com/carbon-design-system/issue-tracking/iss
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Getting started](#getting-started)
-  - [Basic usage](#basic-usage)
+  - [Using CDN](#using-cdn)
+    - [How to install](#how-to-install)
+    - [Basic usage](#basic-usage)
+  - [Using ES imports](#using-es-imports)
+    - [How to install](#how-to-install-1)
+    - [Basic usage](#basic-usage-1)
+  - [Other usage guides](#other-usage-guides)
+- [JavaScript framework support](#javascript-framework-support)
   - [Angular](#angular)
   - [React](#react)
   - [Vue](#vue)
-  - [Other usage guides](#other-usage-guides)
 - [Getting started with development](#getting-started-with-development)
 - [Running React/Angular/Vue Storybook demo](#running-reactangularvue-storybook-demo)
 - [List of available components](#list-of-available-components)
@@ -50,69 +51,95 @@ The effort stems from https://github.com/carbon-design-system/issue-tracking/iss
 - [Creating build](#creating-build)
 - [Running unit test](#running-unit-test)
 - [Running build integration test](#running-build-integration-test)
+- [Running UI integration test](#running-ui-integration-test)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Getting started
 
-To install `carbon-web-components` in your project, you will need to run the
-following command using [npm](https://www.npmjs.com/):
+### Using CDN
 
-```bash
-npm install -S carbon-web-components carbon-components lit-html lit-element
-```
+#### How to install
 
-If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
-instead:
-
-```bash
-yarn add carbon-web-components carbon-components lit-html lit-element
-```
-
-### Basic usage
-
-Our example at [CodeSandbox](https://codesandbox.io) shows the most basic usage:
-
-[![Edit carbon-web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/basic)
-
-The first thing you need is **setting up a module bundler** to resolve ECMAScript `import`s. Above example uses [Webpack](https://webpack.js.org). You can use other bundlers like [Rollup](https://rollupjs.org/), too.
-
-Once you set up a module bundler, you can start importing our component modules, like:
-
-```javascript
-import 'carbon-web-components/es/components/dropdown/dropdown.js';
-import 'carbon-web-components/es/components/dropdown/dropdown-item.js';
-```
-
-Once you do that, you can use our components in the same manner as native HTML tags, like:
+All components are available via CDN. This means that they can be added to your application without the need of any
+bundler configuration. Each component is available by the `latest` tag, or referencing a specific version (starting at
+version `v1.16.0`):
 
 ```html
-<bx-dropdown trigger-content="Select an item">
-  <bx-dropdown-item value="all">Option 1</bx-dropdown-item>
-  <bx-dropdown-item value="cloudFoundry">Option 2</bx-dropdown-item>
-  <bx-dropdown-item value="staging">Option 3</bx-dropdown-item>
-  <bx-dropdown-item value="dea">Option 4</bx-dropdown-item>
-  <bx-dropdown-item value="router">Option 5</bx-dropdown-item>
-</bx-dropdown>
+<!-- By `latest` tag -->
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/accordion.min.js"></script>
+
+<!-- By specific version -->
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v1.16.0/accordion.min.js"></script>
 ```
 
-If you just want to try our components for demonstrations, etc., you can use CDNs that support module mapping (e.g. [JSPM](https://jspm.org)). With it, you can just import our modules in `<script type="module">`:
+These are the list of available components via CDN:
+
+- accordion.min.js
+- breadcrumb.min.js
+- button.min.js
+- checkbox.min.js
+- code-snippet.min.js
+- combo-box.min.js
+- content-switcher.min.js
+- copy-button.min.js
+- data-table.min.js
+- date-picker.min.js
+- dropdown.min.js
+- file-uploader.min.js
+- floating-menu.min.js
+- form.min.js
+- inline-loading.min.js
+- input.min.js
+- link.min.js
+- list.min.js
+- loading.min.js
+- modal.min.js
+- multi-select.min.js
+- notification.min.js
+- number-input.min.js
+- overflow-menu.min.js
+- pagination.min.js
+- progress-indicator.min.js
+- radio-button.min.js
+- search.min.js
+- select.min.js
+- skeleton-placeholder.min.js
+- skeleton-text.min.js
+- skip-to-content.min.js
+- slider.min.js
+- structured-list.min.js
+- tabs.min.js
+- tag.min.js
+- textarea.min.js
+- tile.min.js
+- toggle.min.js
+- tooltip.min.js
+- ui-shell.min.js
+
+To use the right-to-left (RTL) version of the artifacts, change the file extention from `.min.js` to `.rtl.min.js`. For
+example:
+
+```html
+<!-- By `latest` tag (RTL) -->
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/accordion.rtl.min.js"></script>
+
+<!-- By specific version (RTL) -->
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v1.16.0/accordion.rtl.min.js"></script>
+```
+
+#### Basic usage
+
+The CDN artifacts define the custom elements for the browser, so they can be directly used once the script tag has been
+added to the page. For example:
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="module">
-      import 'https://jspm.dev/carbon-web-components/es/components/dropdown/dropdown.js';
-      import 'https://jspm.dev/carbon-web-components/es/components/dropdown/dropdown-item.js';
-    </script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/dropdown.min.js"></script>
     <style type="text/css">
-      #app {
-        font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
-        width: 300px;
-        margin: 2rem;
-      }
-
+      // Suppresses the custom element until it has been defined
       bx-dropdown:not(:defined),
       bx-dropdown-item:not(:defined) {
         visibility: hidden;
@@ -133,11 +160,95 @@ If you just want to try our components for demonstrations, etc., you can use CDN
 </html>
 ```
 
+Our example at [CodeSandbox](https://codesandbox.io) shows usage with only CDN artifacts:
+
+[![Edit carbon-web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/cdn)
+
+### Using ES imports
+
+#### How to install
+
+To install `carbon-web-components` in your project, you will need to run the
+following command using [npm](https://www.npmjs.com/):
+
+```bash
+npm install --save carbon-web-components
+```
+
+If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
+instead:
+
+```bash
+yarn add carbon-web-components
+```
+
+> NOTE: Carbon and Lit dependencies will be managed by Carbon Web Components starting in
+> `v1.19.0`. For earlier versions, these dependencies will have to be installed
+> separately:
+>
+> npm:
+>
+> ```bash
+> npm install --save carbon-components lit-html lit-element
+> ```
+>
+> Yarn:
+>
+> ```bash
+> yarn add carbon-components lit-html lit-element
+> ```
+
+#### Basic usage
+
+Our example at [CodeSandbox](https://codesandbox.io) shows the most basic usage:
+
+[![Edit carbon-web-components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/basic)
+
+The first thing you need is **setting up a module bundler** to resolve ECMAScript `import`s. The above example uses [Webpack](https://webpack.js.org), but you can use other bundlers like [Rollup](https://rollupjs.org/) too.
+
+Once you set up a module bundler, you can start importing our component modules, for example:
+
+```javascript
+import 'carbon-web-components/es/components/dropdown/dropdown.js';
+import 'carbon-web-components/es/components/dropdown/dropdown-item.js';
+```
+
+Once you've imported the component modules, you can use our components in the same manner as native HTML tags, for example:
+
+```html
+<bx-dropdown trigger-content="Select an item">
+  <bx-dropdown-item value="all">Option 1</bx-dropdown-item>
+  <bx-dropdown-item value="cloudFoundry">Option 2</bx-dropdown-item>
+  <bx-dropdown-item value="staging">Option 3</bx-dropdown-item>
+  <bx-dropdown-item value="dea">Option 4</bx-dropdown-item>
+  <bx-dropdown-item value="router">Option 5</bx-dropdown-item>
+</bx-dropdown>
+```
+
+### Other usage guides
+
+- [Having components participate in form](./docs/form.md)
+- [Using custom styles in components](./docs/styling.md)
+- [Using `carbon-web-components` with old build toolchain](./docs/old-build-toolchain.md)
+
+## JavaScript framework support
+
+In addition to the available Web Component versions of Carbon components, this
+library also supports usage with JavaScript frameworks like Angular, React,
+and Vue if the desire is to use instead of the pure framework versions of
+Carbon components. Specifically for React, this library comes with a wrapper
+implementation around the Carbon Web Components for more seamless integration
+with your React application.
+
+This is achievable since Web Components is the modern browser standard, and
+works well with other front-end frameworks that exist in the application. In
+turn, this also comes with the benefits of encapsulation within the Shadow DOM:
+
 ### Angular
 
-[![Edit carbon-web-components with Angular](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/angular)
+[![Edit carbon-web-components with Angular](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/angular)
 
-Angular users can use our components in the same manner as native HTML tags, too, once you add [`CUSTOM_ELEMENTS_SCHEMA`](https://angular.io/api/core/CUSTOM_ELEMENTS_SCHEMA) schema to your Angular module, like:
+Angular users can use our components in the same manner as native HTML tags, too, once you add [`CUSTOM_ELEMENTS_SCHEMA`](https://angular.io/api/core/CUSTOM_ELEMENTS_SCHEMA) schema to your Angular module, for example:
 
 ```javascript
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -161,7 +272,7 @@ The `.d.ts` files in `carbon-web-components` package are compiled with TypeScrip
 
 ### React
 
-[![Edit carbon-web-components with React](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/react)
+[![Edit carbon-web-components with React](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/react)
 
 You can use wrapper React components in `carbon-web-components/es/components-react` generated [automatically from the custom elements](./src/globals/wrappers/createReactCustomElementType.ts) which allows you to use our components seamlessly in your React code. Here's an example:
 
@@ -188,23 +299,17 @@ Note: Using the React wrapper requires an additional dependency, [`prop-types`](
 
 To run the wrapper React components in SSR environment requires Node `12.16.3` or above that supports ["conditional mapping" feature](https://github.com/jkrems/proposal-pkg-exports#2-conditional-mapping):
 
-[![Edit carbon-web-components with React SSR](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/react-ssr)
+[![Edit carbon-web-components with React SSR](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/react-ssr)
 
 Same Node version requirement applies to Next.js:
 
-[![Edit carbon-web-components with React SSR](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/next)
+[![Edit carbon-web-components with React SSR](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/next)
 
 ### Vue
 
-[![Edit carbon-web-components with Vue](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/vue)
+[![Edit carbon-web-components with Vue](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/vue)
 
 Vue users can use our components in the same manner as native HTML tags, without any additional steps!
-
-### Other usage guides
-
-- [Having components participate in form](./docs/form.md)
-- [Using custom styles in components](./docs/styling.md)
-- [Using `carbon-web-components` with old build toolchain](./docs/old-build-toolchain.md)
 
 ## Getting started with development
 
@@ -235,11 +340,11 @@ View available web components at: https://web-components.carbondesignsystem.com/
 To support IE, you need a couple additional setups:
 
 - Toolstack to re-transpile our code to ES5 (e.g. by specifying IE11 in [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env) configuration)
-- Polyfills, listed [here](https://github.com/carbon-design-system/carbon-web-components/blob/master/src/polyfills/index.ts)
+- Polyfills, listed [here](https://github.com/carbon-design-system/carbon-web-components/blob/main/src/polyfills/index.ts)
 
 Here's an example code that shows such setup:
 
-[![Edit carbon-web-components with IE](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/ie)
+[![Edit carbon-web-components with IE](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/ie)
 
 ## Coding conventions
 

@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -26,31 +26,26 @@ export const Default = args => {
         icon-label="${ifNonNull(iconLabel)}"
         label-text="${ifNonNull(labelText)}"
         secondary-label-text="${ifNonNull(secondaryLabelText)}"
-        state="invalid"
-      ></bx-progress-step>
+        state="invalid"></bx-progress-step>
       <bx-progress-step
         icon-label="${ifNonNull(iconLabel)}"
         label-text="${ifNonNull(labelText)}"
         secondary-label-text="${ifNonNull(secondaryLabelText)}"
-        state="complete"
-      ></bx-progress-step>
+        state="complete"></bx-progress-step>
       <bx-progress-step
         icon-label="${ifNonNull(iconLabel)}"
         label-text="${ifNonNull(labelText)}"
         secondary-label-text="${ifNonNull(secondaryLabelText)}"
-        state="current"
-      ></bx-progress-step>
+        state="current"></bx-progress-step>
       <bx-progress-step
         disabled
         icon-label="${ifNonNull(iconLabel)}"
         label-text="${ifNonNull(labelText)}"
-        secondary-label-text="${ifNonNull(secondaryLabelText)}"
-      ></bx-progress-step>
+        secondary-label-text="${ifNonNull(secondaryLabelText)}"></bx-progress-step>
       <bx-progress-step
         icon-label="${ifNonNull(iconLabel)}"
         label-text="${ifNonNull(labelText)}"
-        secondary-label-text="${ifNonNull(secondaryLabelText)}"
-      ></bx-progress-step>
+        secondary-label-text="${ifNonNull(secondaryLabelText)}"></bx-progress-step>
     </bx-progress-indicator>
   `;
 };
@@ -58,7 +53,6 @@ export const Default = args => {
 Default.storyName = 'Default';
 
 Default.parameters = {
-  ...storyDocs.parameters,
   knobs: {
     'bx-progress-indicator': () => ({
       vertical: boolean('Vertical (vertical)', false),
@@ -95,4 +89,7 @@ skeleton.parameters = {
 
 export default {
   title: 'Components/Progress indicator',
+  parameters: {
+    ...storyDocs.parameters,
+  },
 };

@@ -1,5 +1,7 @@
 custom-elements.json
 docs/js
+dist
+.DS_Store
 es
 lib
 node_modules
@@ -12,3 +14,6 @@ tests/coverage
 .vscode
 .idea
 .env
+.npmrc
+yarn-error.log
+CHANGELOG.md

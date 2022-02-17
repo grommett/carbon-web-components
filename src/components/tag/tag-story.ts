@@ -27,7 +27,7 @@ export const Default = args => {
   const { size, type, title, disabled } = args?.['bx-tag'] ?? {};
   return html`
     <bx-tag size="${ifNonNull(size)}" type="${ifNonNull(type)}" title="${ifNonNull(title)}" ?disabled="${disabled}">
-      This is not a tag
+      This is a tag
     </bx-tag>
   `;
 };
@@ -56,8 +56,17 @@ Default.parameters = {
 };
 
 export const filter = args => {
-  const { open, size, type, title, disabled, disableClose, onClick, onBeforeClose = noop, onClose = noop } =
-    args?.['bx-filter-tag'] ?? {};
+  const {
+    open,
+    size,
+    type,
+    title,
+    disabled,
+    disableClose,
+    onClick,
+    onBeforeClose = noop,
+    onClose = noop,
+  } = args?.['bx-filter-tag'] ?? {};
   const handleBeforeClose = (event: CustomEvent) => {
     onBeforeClose(event);
     if (disableClose) {
@@ -73,9 +82,8 @@ export const filter = args => {
       ?disabled="${disabled}"
       @click="${onClick}"
       @bx-filter-tag-beingclosed="${handleBeforeClose}"
-      @bx-filter-tag-closed="${onClose}"
-    >
-      This is not a tag
+      @bx-filter-tag-closed="${onClose}">
+      This is a tag
     </bx-filter-tag>
   `;
 };

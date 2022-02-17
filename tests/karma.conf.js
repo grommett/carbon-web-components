@@ -7,12 +7,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
-
 /* eslint-disable global-require */
 
 const path = require('path');
-const sass = require('node-sass');
+const sass = require('sass');
 
 function normalizeBrowser(browser) {
   return (
@@ -26,16 +24,8 @@ function normalizeBrowser(browser) {
 }
 
 module.exports = function setupKarma(config) {
-  const {
-    browsers,
-    collectCoverage,
-    noPruneShapshot,
-    specs,
-    random,
-    updateSnapshot,
-    useExperimentalFeatures,
-    verbose,
-  } = config.customConfig;
+  const { browsers, collectCoverage, noPruneShapshot, specs, random, updateSnapshot, useExperimentalFeatures, verbose } =
+    config.customConfig;
 
   config.set({
     basePath: '..',
@@ -50,9 +40,12 @@ module.exports = function setupKarma(config) {
       },
     },
 
-    files: ['src/polyfills/index.ts', 'tests/utils/snapshot.js', 'tests/snapshots/**/*.md'].concat(
-      specs.length > 0 ? specs : ['tests/karma-test-shim.js']
-    ),
+    files: [
+      'src/polyfills/index.ts',
+      'tests/utils/snapshot.js',
+      'tests/snapshots/**/*.md',
+      'tests/karma-setup-renderroot.js',
+    ].concat(specs.length > 0 ? specs : ['tests/karma-test-shim.js']),
 
     preprocessors: {
       'src/**/*.[jt]s': ['webpack', 'sourcemap'], // For generatoring coverage report for untested files

@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -70,6 +70,10 @@ class BXSearch extends FocusMixin(LitElement) {
         })
       );
       this.value = '';
+
+      // set focus on back to input once search is cleared
+      const input = this.shadowRoot!.querySelector('input');
+      (input as HTMLElement).focus();
     }
   }
 
@@ -154,7 +158,7 @@ class BXSearch extends FocusMixin(LitElement) {
     return html`
       ${Search16({
         part: 'search-icon',
-        class: `${prefix}--search-magnifier`,
+        class: `${prefix}--search-magnifier-icon`,
         role: 'img',
       })}
       <label for="input" part="label-text" class="${prefix}--label">
@@ -170,15 +174,13 @@ class BXSearch extends FocusMixin(LitElement) {
         placeholder="${ifNonEmpty(placeholder)}"
         role="searchbox"
         .value="${value}"
-        @input="${handleInput}"
-      />
+        @input="${handleInput}" />
       <button
         part="close-button"
         class="${clearClasses}"
         @click="${handleClearInputButtonClick}"
         type="button"
-        aria-label="${closeButtonAssistiveText}"
-      >
+        aria-label="${closeButtonAssistiveText}">
         ${(size === INPUT_SIZE.SMALL ? Close16 : Close20)({
           part: 'close-icon',
           'aria-label': closeButtonAssistiveText,

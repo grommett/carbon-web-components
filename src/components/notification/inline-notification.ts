@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -71,7 +71,7 @@ class BXInlineNotification extends FocusMixin(LitElement) {
     if (this._timeoutID) {
       this._cancelTimeout(this._timeoutID);
     }
-    this._timeoutID = (setTimeout(this._handleUserOrTimerInitiatedClose.bind(this, null), timeout) as unknown) as number;
+    this._timeoutID = setTimeout(this._handleUserOrTimerInitiatedClose.bind(this, null), timeout) as unknown as number;
   }
 
   /**
@@ -114,8 +114,7 @@ class BXInlineNotification extends FocusMixin(LitElement) {
         class="${prefix}--${type}-notification__close-button"
         aria-label=${ifDefined(closeButtonLabel)}
         title=${ifDefined(closeButtonLabel)}
-        @click="${handleClickCloseButton}"
-      >
+        @click="${handleClickCloseButton}">
         ${Close20({
           class: `${prefix}--${type}-notification__close-icon`,
         })}
@@ -176,6 +175,12 @@ class BXInlineNotification extends FocusMixin(LitElement) {
   kind = NOTIFICATION_KIND.SUCCESS;
 
   /**
+   * Low contrast mode
+   */
+  @property({ type: Boolean, reflect: true, attribute: 'low-contrast' })
+  lowContrast = false;
+
+  /**
    * `true` if the notification should be open.
    */
   @property({ type: Boolean, reflect: true })
@@ -222,9 +227,7 @@ class BXInlineNotification extends FocusMixin(LitElement) {
   render() {
     const { _type: type } = this;
     return html`
-      <div class="${prefix}--${type}-notification__details">
-        ${this._renderIcon()}${this._renderText()}
-      </div>
+      <div class="${prefix}--${type}-notification__details">${this._renderIcon()}${this._renderText()}</div>
       ${this._renderButton()}
     `;
   }

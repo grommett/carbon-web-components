@@ -17,7 +17,7 @@ A Carbon Design System variant that's as easy to use as native HTML elements, wi
 > contributors.
 
 <p align="center">
-  <a href="https://github.com/carbon-design-system/carbon-web-components/blob/master/LICENSE">
+  <a href="https://github.com/carbon-design-system/carbon-web-components/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Carbon is released under the Apache-2.0 license" />
   </a>
 </p>
@@ -34,14 +34,14 @@ To install `carbon-web-components` in your project, you will need to run the
 following command using [npm](https://www.npmjs.com/):
 
 ```bash
-npm install -S carbon-web-components carbon-components lit-html lit-element
+npm install --save carbon-web-components
 ```
 
 If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
 instead:
 
 ```bash
-yarn add carbon-web-components carbon-components lit-html lit-element
+yarn add carbon-web-components
 ```
 
 ### Basic usage
@@ -49,22 +49,22 @@ yarn add carbon-web-components carbon-components lit-html lit-element
 Our example at [CodeSandbox](https://codesandbox.io) shows the most basic usage:
 
 <iframe
-  src="https://codesandbox.io/embed/github/carbon-design-system/carbon-web-components/tree/master/examples/codesandbox/basic?fontsize=14&hidenavigation=1&theme=light"
+  src="https://codesandbox.io/embed/github/carbon-design-system/carbon-web-components/tree/main/examples/codesandbox/basic?fontsize=14&hidenavigation=1&theme=light"
   style={{ width: '100%', height: '500px', border: 'solid rgba(0,0,0,0.1) 1px', boxShadow: 'rgba(0,0,0,0.1) 0 1px 3px 0' }}
   title="carbon-web-components-getting-started"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
 ></iframe>
 
-The first thing you need is **setting up a module bundler** to resolve ECMAScript `import`s. Above example uses [Parcel](https://parceljs.org). You can use other bundlers like [Rollup](https://rollupjs.org/)/[Webpack](https://webpack.js.org), too.
+The first thing you need is **setting up a module bundler** to resolve ECMAScript `import`s. The above example uses [Webpack](https://webpack.js.org), but you can use other bundlers like [Rollup](https://rollupjs.org/) too.
 
-Once you set up a module bundler, you can start importing our component modules, like:
+Once you set up a module bundler, you can start importing our component modules, for example:
 
 ```javascript
 import 'carbon-web-components/es/components/dropdown/dropdown';
 import 'carbon-web-components/es/components/dropdown/dropdown-item';
 ```
 
-Once you do that, you can use our components in the same manner as native HTML tags, like:
+Once you've imported the component modules, you can use our components in the same manner as native HTML tags, for example:
 
 ```html
 <bx-dropdown trigger-content="Select an item">
@@ -76,7 +76,7 @@ Once you do that, you can use our components in the same manner as native HTML t
 </bx-dropdown>
 ```
 
-If you just want to try our components for demnstrations, etc., you can use CDNs that support module mapping (e.g. [JSPM](https://jspm.org)). With it, you can just import our modules in `<script type="module">`:
+If you just want to try our components for demnstrations and so on, you can use CDNs that support module mapping (for example, [JSPM](https://jspm.org)). With CDNs, you can import just our modules in `<script type="module">`:
 
 ```html
 <!DOCTYPE html>
@@ -123,12 +123,20 @@ If you just want to try our components for demnstrations, etc., you can use CDNs
 
 ### JavaScript framework integration
 
-Given the nature of `carbon-web-components` built on top of web standard, `carbon-web-components` works well with JavaScript framework of your choice.
-Please follow below links:
+In addition to the available Web Component versions of Carbon components, this
+library also supports usage with JavaScript frameworks like Angular, React,
+and Vue if the desire is to use instead of the pure framework versions of
+Carbon components. Specifically for React, this library comes with a wrapper
+implementation around the Carbon Web Components for more seamless integration
+with your React application.
 
-- [Angular](https://web-components.carbondesignsystem.com/react/index.html)
-- [React](https://web-components.carbondesignsystem.com/angular/index.html)
-- [Vue](https://web-components.carbondesignsystem.com/vue/index.html)
+This is achievable since Web Components is the modern browser standard, and
+works well with other front-end frameworks that exist in the application. In
+turn, this also comes with the benefits of encapsulation within the Shadow DOM:
+
+- [Carbon Web Components with Angular](https://web-components.carbondesignsystem.com/angular/index.html)
+- [Carbon Web Components with React](https://web-components.carbondesignsystem.com/react/index.html)
+- [Carbon Web Components with Vue](https://web-components.carbondesignsystem.com/vue/index.html)
 
 ### Other usage guides
 

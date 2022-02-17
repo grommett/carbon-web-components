@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -31,6 +31,7 @@ export const inline = args => {
     title,
     subtitle,
     hideCloseButton,
+    lowContrast,
     closeButtonLabel,
     iconLabel,
     open,
@@ -52,13 +53,13 @@ export const inline = args => {
       title="${ifNonNull(title)}"
       subtitle="${ifNonNull(subtitle)}"
       ?hide-close-button="${hideCloseButton}"
+      ?low-contrast="${lowContrast}"
       close-button-label="${ifNonNull(closeButtonLabel)}"
       icon-label="${ifNonNull(iconLabel)}"
       ?open="${open}"
       timeout="${ifNonNull(timeout)}"
       @bx-notification-beingclosed="${handleBeforeClose}"
-      @bx-notification-closed="${onClose}"
-    >
+      @bx-notification-closed="${onClose}">
     </bx-inline-notification>
   `;
 };
@@ -70,6 +71,7 @@ inline.parameters = {
       title: textNullable('Title (title)', 'Notification title'),
       subtitle: textNullable('Subtitle (subtitle)', 'Subtitle text goes here.'),
       hideCloseButton: boolean('Hide the close button (hide-close-button)', false),
+      lowContrast: boolean('Use low contrast variant (low-contrast)', false),
       closeButtonLabel: textNullable('a11y label for the close button (close-button-label)', ''),
       iconLabel: textNullable('a11y label for the icon (icon-label)', ''),
       open: boolean('Open (open)', true),
@@ -91,6 +93,7 @@ export const toast = args => {
     subtitle,
     caption,
     hideCloseButton,
+    lowContrast,
     closeButtonLabel,
     iconLabel,
     open,
@@ -113,13 +116,13 @@ export const toast = args => {
       subtitle="${ifNonNull(subtitle)}"
       caption="${ifNonNull(caption)}"
       ?hide-close-button="${hideCloseButton}"
+      ?low-contrast="${lowContrast}"
       close-button-label="${ifNonNull(closeButtonLabel)}"
       icon-label="${ifNonNull(iconLabel)}"
       ?open="${open}"
       timeout="${ifNonNull(timeout)}"
       @bx-notification-beingclosed="${handleBeforeClose}"
-      @bx-notification-closed="${onClose}"
-    >
+      @bx-notification-closed="${onClose}">
     </bx-toast-notification>
   `;
 };

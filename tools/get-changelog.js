@@ -7,8 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
-
 const child = require('child_process');
 const program = require('commander');
 
@@ -165,6 +163,7 @@ function getChangelog() {
     changelog += '\n';
   }
 
+  // eslint-disable-next-line no-console
   console.log(changelog);
 }
 

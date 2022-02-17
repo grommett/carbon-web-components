@@ -1,29 +1,38 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
-'use strict';
-
 const restrictedGlobals = require('eslint-restricted-globals');
 
 module.exports = {
+  extends: ['airbnb-base', 'plugin:prettier/recommended'],
   plugins: ['babel'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'script',
   },
-  extends: ['carbon-base'],
   env: {
     node: true,
     es6: true,
+    browser: true,
   },
   rules: {
+    'max-len': [2, 130, 4],
+    'no-param-reassign': [
+      2,
+      {
+        props: false,
+      },
+    ],
+    'no-plusplus': 0,
+    'no-underscore-dangle': 0,
+    'prefer-rest-params': 0,
     'no-restricted-globals': ['error', 'isFinite'].concat(restrictedGlobals),
     'no-unused-expressions': 0,
     'babel/no-unused-expressions': 2,
@@ -37,6 +46,7 @@ module.exports = {
       },
     ],
     'import/no-unresolved': [2, { ignore: ['^carbon-web-components/es/icons/'] }],
+    'max-classes-per-file': 0,
   },
   settings: {
     'import/resolver': {

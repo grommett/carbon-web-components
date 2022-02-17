@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -20,9 +20,9 @@ import Add24 from 'carbon-web-components/es/icons/add/24';
 // @ts-ignore
 import Add32 from 'carbon-web-components/es/icons/add/32';
 
-export const Default = () => html`
-  ${Add16()} ${Add20()} ${Add24()} ${Add32()}
-`;
+import storyDocs from './icon-story.mdx';
+
+export const Default = () => html` ${Add16()} ${Add20()} ${Add24()} ${Add32()} `;
 
 Default.storyName = 'Default';
 
@@ -68,4 +68,7 @@ withTitle.storyName = 'With title';
 
 export default {
   title: 'Components/Icon',
+  parameters: {
+    ...storyDocs.parameters,
+  },
 };

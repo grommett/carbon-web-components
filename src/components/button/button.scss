@@ -1,5 +1,5 @@
 //
-// Copyright IBM Corp. 2019, 2020
+// Copyright IBM Corp. 2019, 2021
 //
 // This source code is licensed under the Apache-2.0 license found in the
 // LICENSE file in the root directory of this source tree.
@@ -9,7 +9,8 @@ $css--plex: true !default;
 
 @import 'carbon-components/scss/components/button/button';
 
-:host(#{$prefix}-btn) {
+:host(#{$prefix}-btn),
+:host(#{$prefix}-modal-footer-button) {
   display: inline-flex;
   max-width: rem(320px);
   outline: none;
@@ -19,21 +20,36 @@ $css--plex: true !default;
     max-width: 100%;
   }
 
-  .#{$prefix}-ce--btn--has-icon {
-    padding-right: 12px;
-  }
-
   ::slotted([slot='icon']) {
     fill: currentColor;
-    margin-left: calc(#{rem(60px)} - #{$spacing-04} - #{$icon-size-01});
+    position: absolute;
+    right: rem(16px);
+    flex-shrink: 0;
   }
 
-  &[icon-layout='condensed'] ::slotted([slot='icon']) {
-    margin-left: $spacing-03;
+  &[isExpressive] ::slotted([slot='icon']) {
+    width: rem(20px);
+    height: rem(20px);
+  }
+
+  &[icon-layout='condensed'] .#{$prefix}--btn {
+    padding-right: rem(39px);
   }
 
   .#{$prefix}--btn--icon-only ::slotted([slot='icon']) {
-    margin-left: 0;
+    position: static;
+  }
+
+  &[kind='ghost'],
+  &[kind='danger-ghost'] {
+    ::slotted([slot='icon']) {
+      position: static;
+      margin-left: rem(8px);
+    }
+
+    &[icon-layout='condensed'] .#{$prefix}--btn {
+      padding-right: rem(16px);
+    }
   }
 }
 

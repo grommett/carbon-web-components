@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,7 +10,7 @@
 import settings from 'carbon-components/es/globals/js/settings';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { html, property, query, customElement, LitElement } from 'lit-element';
-import ChevronDownGlyph from '@carbon/icons/lib/chevron--down';
+import ChevronDownGlyph from '@carbon/icons/lib/chevron--down/16';
 import FocusMixin from '../../globals/mixins/focus';
 import HostListenerMixin from '../../globals/mixins/host-listener';
 import HostListener from '../../globals/decorators/host-listener';
@@ -93,7 +93,7 @@ class BXHeaderMenu extends HostListenerMixin(FocusMixin(LitElement)) {
   createRenderRoot() {
     return this.attachShadow({
       mode: 'open',
-      delegatesFocus: Number((/Safari\/(\d+)/.exec(navigator.userAgent) ?? ['', 0])[1]) <= 537,
+      delegatesFocus: true,
     });
   }
 
@@ -118,7 +118,6 @@ class BXHeaderMenu extends HostListenerMixin(FocusMixin(LitElement)) {
     const { expanded, triggerContent, menuLabel, _handleClick: handleClick, _handleKeydownTrigger: handleKeydownTrigger } = this;
     return html`
       <a
-        role="menuitem"
         part="trigger"
         tabindex="0"
         class="${prefix}--header__menu-item ${prefix}--header__menu-title"
@@ -126,11 +125,10 @@ class BXHeaderMenu extends HostListenerMixin(FocusMixin(LitElement)) {
         aria-haspopup="menu"
         aria-expanded="${String(Boolean(expanded))}"
         @click=${handleClick}
-        @keydown=${handleKeydownTrigger}
-      >
+        @keydown=${handleKeydownTrigger}>
         ${triggerContent}${ChevronDownGlyph({ part: 'trigger-icon', class: `${prefix}--header__menu-arrow` })}
       </a>
-      <ul role="menu" part="menu-body" class="${prefix}--header__menu" aria-label="${ifDefined(menuLabel)}">
+      <ul part="menu-body" class="${prefix}--header__menu" aria-label="${ifDefined(menuLabel)}">
         <slot></slot>
       </ul>
     `;

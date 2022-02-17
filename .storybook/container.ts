@@ -1,13 +1,14 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2020
+ * Copyright IBM Corp. 2020, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
-import { html, TemplateResult } from 'lit-html';
+import { html } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 import '../src/components/skip-to-content/skip-to-content';
 import containerStyles from './_container.scss'; // eslint-disable-line import/first
 
@@ -27,8 +28,7 @@ const container = ({ hasMainTag, children }: { hasMainTag?: boolean; children: T
     name="main-content"
     data-floating-menu-container
     role="${hasMainTag ? 'none' : 'main'}"
-    class="bx--body bx-ce-demo-devenv--container"
-  >
+    class="bx--body bx-ce-demo-devenv--container">
     ${children}
   </div>
 `;

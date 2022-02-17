@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * Copyright IBM Corp. 2019, 2020
+ * Copyright IBM Corp. 2019, 2021
  *
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
@@ -95,7 +95,7 @@ class BXTableHeaderCell extends FocusMixin(LitElement) {
 
   /**
    * The table sort direction.
-   * If present, this table header cell will have a sorting UI.
+   * If present, this table header cell will have a sorting UI. Choose between `ascending` or `descending`.
    */
   @property({ reflect: true, attribute: 'sort-direction' })
   sortDirection?: TABLE_SORT_DIRECTION;
@@ -132,16 +132,13 @@ class BXTableHeaderCell extends FocusMixin(LitElement) {
           part="sort-button"
           class="${prefix}--table-sort"
           title="${this.textContent}"
-          @click=${this._handleClickSortButton}
-        >
+          @click=${this._handleClickSortButton}>
           <span part="label-text" class="${prefix}--table-header-label"><slot @slotchange=${this._handleSlotChange}></slot></span>
           ${sortIcon}
         </button>
       `;
     }
-    return html`
-      <slot></slot>
-    `;
+    return html`<slot></slot>`;
   }
 
   /**

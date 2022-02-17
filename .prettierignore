@@ -2,7 +2,10 @@
 /docs/js
 /tests/coverage
 /tests/snapshots
+storybook-static*
 .github
 .yarn
 es
+dist
 node_modules
+custom-elements.json

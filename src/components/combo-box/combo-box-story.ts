@@ -83,13 +83,15 @@ export const Default = args => {
       @bx-combo-box-beingselected=${handleBeforeSelect}
       @bx-combo-box-beingtoggled=${handleBeforeToggle}
       @bx-combo-box-selected=${onSelect}
-      @bx-combo-box-toggled=${onToggle}
-    >
+      @bx-combo-box-toggled=${onToggle}>
       <bx-combo-box-item value="all">Option 1</bx-combo-box-item>
       <bx-combo-box-item value="cloudFoundry">Option 2</bx-combo-box-item>
       <bx-combo-box-item value="staging">Option 3</bx-combo-box-item>
       <bx-combo-box-item value="dea">Option 4</bx-combo-box-item>
       <bx-combo-box-item value="router">Option 5</bx-combo-box-item>
+      <bx-combo-box-item value="support">Option 6</bx-combo-box-item>
+      <bx-combo-box-item value="services">Option 7</bx-combo-box-item>
+      <bx-combo-box-item value="products">Option 8</bx-combo-box-item>
     </bx-combo-box>
   `;
 };

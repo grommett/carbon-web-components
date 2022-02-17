@@ -3,21 +3,28 @@ name: percy-update-base
 on:
   push:
     branches:
-      - master
+      - main
       - release/*
+
+concurrency:
+  group: percy-update-base-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   percy:
-    runs-on: ubuntu-16.04
+    # Prevent on forks because they don't have access to the secrets
+    if: github.repository == 'carbon-design-system/carbon-web-components'
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['12.x']
+        node-version: ['16.x']
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
       - name: Install dependencies
         run: yarn install
       - name: Install xvfb
